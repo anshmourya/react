@@ -13,6 +13,9 @@ const input = new Set([
   // "."
   'src/index.ts',
 
+  // "./experimental"
+  'src/experimental/index.ts',
+
   // "./drafts"
   'src/drafts/index.ts',
 
@@ -112,7 +115,8 @@ const baseConfig = {
     postcss({
       extract: 'components.css',
       autoModules: false,
-      modules: {generateScopedName: 'prc_[local]-[hash:base64:5]'},
+      modules: {generateScopedName: 'prc_[local]_[hash:base64:5]'},
+      // plugins are defined in postcss.config.js
     }),
   ],
 }

@@ -7,16 +7,13 @@ import Text from '../Text'
 import {get} from '../constants'
 import {useProvidedStateOrCreate} from '../hooks'
 import sx, {BetterSystemStyleObject, SxProp} from '../sx'
+import VisuallyHidden from '../_VisuallyHidden'
 import {CellAlignment} from '../DataTable/column'
 
 const TRANSITION_DURATION = '80ms'
 const EASE_OUT_QUAD_CURVE = 'cubic-bezier(0.5, 1, 0.89, 1)'
 
-export type ToggleSwitchProps = {
-  /** The id of the DOM node that describes the switch */
-  ['aria-describedby']?: string
-  /** The id of the DOM node that labels the switch */
-  ['aria-labelledby']: string
+export interface ToggleSwitchProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, SxProp {
   /** Uncontrolled - whether the switch is turned on */
   defaultChecked?: boolean
   /** Whether the switch is ready for user input */
@@ -35,7 +32,7 @@ export type ToggleSwitchProps = {
    * **This should only be changed when the switch's alignment needs to be adjusted.** For example: It needs to be left-aligned because the label appears above it and the caption appears below it.
    */
   statusLabelPosition?: CellAlignment
-} & SxProp
+}
 
 const sizeVariants = variant({
   prop: 'size',
@@ -220,6 +217,7 @@ const ToggleSwitch: React.FC<React.PropsWithChildren<ToggleSwitchProps>> = ({
   size = 'medium',
   statusLabelPosition = 'start',
   sx: sxProp,
+  ...props
 }) => {
   const isControlled = typeof checked !== 'undefined'
   const [isOn, setIsOn] = useProvidedStateOrCreate<boolean>(checked, onChange, Boolean(defaultChecked))
@@ -246,6 +244,7 @@ const ToggleSwitch: React.FC<React.PropsWithChildren<ToggleSwitchProps>> = ({
       alignItems="center"
       flexDirection={statusLabelPosition === 'start' ? 'row' : 'row-reverse'}
       sx={sxProp}
+      {...props}
     >
       {loading ? <Spinner size="small" /> : null}
       <Text
@@ -253,8 +252,7 @@ const ToggleSwitch: React.FC<React.PropsWithChildren<ToggleSwitchProps>> = ({
         fontSize={size === 'small' ? 0 : 1}
         mx={2}
         aria-hidden="true"
-        sx={{position: 'relative', cursor: 'pointer'}}
-        onClick={handleToggleClick}
+        sx={{position: 'relative'}}
       >
         <Box textAlign="right" sx={isOn ? null : hiddenTextStyles}>
           On
@@ -267,11 +265,13 @@ const ToggleSwitch: React.FC<React.PropsWithChildren<ToggleSwitchProps>> = ({
         onClick={handleToggleClick}
         aria-labelledby={ariaLabelledby}
         aria-describedby={ariaDescribedby}
-        aria-pressed={isOn}
+        aria-checked={isOn}
+        role="switch"
         checked={isOn}
         size={size}
         disabled={!acceptsInteraction}
       >
+        <VisuallyHidden>{isOn ? 'On' : 'Off'}</VisuallyHidden>
         <Box aria-hidden="true" display="flex" alignItems="center" width="100%" height="100%" overflow="hidden">
           <Box
             flexGrow={1}
