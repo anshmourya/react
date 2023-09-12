@@ -1,14 +1,14 @@
 import React from 'react'
 import {TriangleDownIcon} from '@primer/octicons-react'
-import {AnchoredOverlay, AnchoredOverlayProps} from '../AnchoredOverlay'
-import {OverlayProps} from '../Overlay'
-import {useProvidedRefOrCreate, useProvidedStateOrCreate, useMenuKeyboardNavigation} from '../hooks'
-import {Divider} from '../ActionList/Divider'
-import {ActionListContainerContext} from '../ActionList/ActionListContainerContext'
-import {Button, ButtonProps} from '../Button'
-import {useId} from '../hooks/useId'
-import {MandateProps} from '../utils/types'
-import {ForwardRefComponent as PolymorphicForwardRefComponent} from '../utils/polymorphic'
+import {AnchoredOverlay, AnchoredOverlayProps} from './AnchoredOverlay'
+import {OverlayProps} from './Overlay'
+import {useProvidedRefOrCreate, useProvidedStateOrCreate, useMenuKeyboardNavigation} from './hooks'
+import {Divider} from './ActionList/Divider'
+import {ActionListContainerContext} from './ActionList/ActionListContainerContext'
+import {Button, ButtonProps} from './Button'
+import {useId} from './hooks/useId'
+import {MandateProps} from './utils/types'
+import {ForwardRefComponent as PolymorphicForwardRefComponent} from './utils/polymorphic'
 
 export type MenuContextProps = Pick<
   AnchoredOverlayProps,
@@ -73,7 +73,7 @@ const Anchor = React.forwardRef<HTMLElement, ActionMenuAnchorProps>(({children, 
 })
 
 /** this component is syntactical sugar 🍭 */
-export type ActionMenuButtonProps = Omit<ButtonProps, 'children'> & {
+export type ActionMenuButtonProps = ButtonProps & {
   children: React.ReactNode
 }
 const MenuButton = React.forwardRef(({...props}, anchorRef) => {
@@ -85,7 +85,7 @@ const MenuButton = React.forwardRef(({...props}, anchorRef) => {
 }) as PolymorphicForwardRefComponent<'button', ActionMenuButtonProps>
 
 type MenuOverlayProps = Partial<OverlayProps> &
-  Pick<AnchoredOverlayProps, 'align' | 'side'> & {
+  Pick<AnchoredOverlayProps, 'align'> & {
     /**
      * Recommended: `ActionList`
      */
@@ -94,7 +94,7 @@ type MenuOverlayProps = Partial<OverlayProps> &
 const Overlay: React.FC<React.PropsWithChildren<MenuOverlayProps>> = ({
   children,
   align = 'start',
-  side = 'outside-bottom',
+  'aria-labelledby': ariaLabelledby,
   ...overlayProps
 }) => {
   // we typecast anchorRef as required instead of optional
@@ -116,7 +116,6 @@ const Overlay: React.FC<React.PropsWithChildren<MenuOverlayProps>> = ({
       onOpen={onOpen}
       onClose={onClose}
       align={align}
-      side={side}
       overlayProps={overlayProps}
       focusZoneSettings={{focusOutBehavior: 'wrap'}}
     >
@@ -125,7 +124,7 @@ const Overlay: React.FC<React.PropsWithChildren<MenuOverlayProps>> = ({
           value={{
             container: 'ActionMenu',
             listRole: 'menu',
-            listLabelledBy: anchorId,
+            listLabelledBy: ariaLabelledby || anchorId,
             selectionAttribute: 'aria-checked', // Should this be here?
             afterSelect: onClose,
           }}
