@@ -1,5 +1,121 @@
 # @primer/components
 
+## 36.0.0
+
+### Major Changes
+
+- [#3569](https://github.com/primer/react/pull/3569) [`22434e2d`](https://github.com/primer/react/commit/22434e2daa2998e3735c3a6a996b709066c5465e) Thanks [@joshblack](https://github.com/joshblack)! - Update styled-components and related dependencies to v5.x
+
+  <!-- Changed components: _none_ -->
+
+- [#3542](https://github.com/primer/react/pull/3542) [`8f7186af`](https://github.com/primer/react/commit/8f7186afcfa131c14add762cf49be7abc1b6cc0d) Thanks [@broccolinisoup](https://github.com/broccolinisoup)! - Remove components from deprecated
+
+  - `BorderBox`, `ChoiceFieldset`, `Flex`, `Grid`, `Position`, `Dropdown`, `FormGroup`, `SelectMenu`, `InputField`, `Label`
+
+  <!-- Changed components: _none_ -->
+
+- [#3260](https://github.com/primer/react/pull/3260) [`52c8d220`](https://github.com/primer/react/commit/52c8d220c68143d15b40f5c58a87b9ccb0307a71) Thanks [@broccolinisoup](https://github.com/broccolinisoup)! - Remove components from draft bundle
+
+  - Move UnderlineNav2 (draft) to the main bundle
+
+  ```diff
+  - import {UnderlineNav} from '@primer/react/drafts'
+  + import {UnderlineNav} from '@primer/react'
+  ```
+
+  ....
+
+  - Remove TreeView from drafts
+
+  ```diff
+  - import {TreeView} from '@primer/react/drafts'
+  + import {TreeView} from '@primer/react'
+  ```
+
+  - Remove SegmentedControl from drafts
+
+  ```diff
+  - import {SegmentedControl} from '@primer/react/drafts'
+  + import {SegmentedControl} from '@primer/react'
+  ```
+
+  - Remove NavList from drafts
+
+  ```diff
+  - import {NavList} from '@primer/react/drafts'
+  + import {NavList} from '@primer/react'
+  ```
+
+  - Remove SplitPageLayout from drafts
+
+  ```diff
+  - import {SplitPageLayout} from '@primer/react/drafts'
+  + import {SplitPageLayout} from '@primer/react'
+  ```
+
+  <!-- Changed components: UnderlineNav, TreeView, SegmentedControl, NavList, SplitPageLayout -->
+
+- [#2893](https://github.com/primer/react/pull/2893) [`98ea43fa`](https://github.com/primer/react/commit/98ea43fa01d78e11ba1088f149704c6c2da8a906) Thanks [@langermank](https://github.com/langermank)! - - Changes `leadingIcon` and `trailingIcon` to `leadingVisual` and `trailingVisual`
+
+  - Removes `Button.Counter` as a child component, replacing it with a `count` prop. This change allows us to use the `trailingVisual` slot for counters.
+  - Removes the `outline` button variant as we wish to only support `invisible` buttons.
+
+- [#3313](https://github.com/primer/react/pull/3313) [`77d4042f`](https://github.com/primer/react/commit/77d4042fc4b3ef701eb5d8610a77041d8e857a53) Thanks [@broccolinisoup](https://github.com/broccolinisoup)! - Remove deprecated `extralarge` variant from `Token` and `TextInputWithToken` component
+
+- [#3396](https://github.com/primer/react/pull/3396) [`318f9d6d`](https://github.com/primer/react/commit/318f9d6d0d94594658bbe82f70260e2959d8f9f9) Thanks [@mperrotti](https://github.com/mperrotti)! - Deprecates FilterList and FilteredSearch components
+
+- [#3399](https://github.com/primer/react/pull/3399) [`d5f394ea`](https://github.com/primer/react/commit/d5f394eab87cde6021278e44b0226b3fdfa9b172) Thanks [@mperrotti](https://github.com/mperrotti)! - Makes @types/styled-components an optional peer dependency, not a dependency
+
+- [#3240](https://github.com/primer/react/pull/3240) [`5d7d55b0`](https://github.com/primer/react/commit/5d7d55b09ca4bcd98361c89081e7fe16970c4029) Thanks [@joshblack](https://github.com/joshblack)! - Update minimum version for react and react-dom to v18
+
+- [#3544](https://github.com/primer/react/pull/3544) [`134f2658`](https://github.com/primer/react/commit/134f2658f0e73478d84b9caa942748dcef1b4192) Thanks [@broccolinisoup](https://github.com/broccolinisoup)! - Remove `DropdownButton` and `DropdownMenu` from deprecated and update the usages across
+
+  <!-- Changed components: SelectPanel, ActionList -->
+
+- [#3387](https://github.com/primer/react/pull/3387) [`a8dbf4a5`](https://github.com/primer/react/commit/a8dbf4a5e8a773ff36ffde582410a7acb143a764) Thanks [@mperrotti](https://github.com/mperrotti)! - The Autocomplete component no longer uses the deprecated ActionList component. There have been minor API updates, but it's largely the same.
+
+- [#3414](https://github.com/primer/react/pull/3414) [`eab4d15c`](https://github.com/primer/react/commit/eab4d15cf1e0048858ded9cb6f1ba67eb5231426) Thanks [@mperrotti](https://github.com/mperrotti)! - Removes 'warning' option from form components' `validationStatus` props
+
+- [#3319](https://github.com/primer/react/pull/3319) [`5d31e628`](https://github.com/primer/react/commit/5d31e6284b8877080aa9baf02ee9f1c2a92255b0) Thanks [@broccolinisoup](https://github.com/broccolinisoup)! - Remove support for `activeClassName` for Breadcrumb, SubNav, TabNav, UnderlineNav
+
+- [#3556](https://github.com/primer/react/pull/3556) [`ce628a9b`](https://github.com/primer/react/commit/ce628a9bcdeb44c74db5e5c57ba8d2cd383b3635) Thanks [@langermank](https://github.com/langermank)! - Ensure ActionList item has `border-radius` on hover with `full` variant
+
+- [#3386](https://github.com/primer/react/pull/3386) [`7821267f`](https://github.com/primer/react/commit/7821267f3b3856ed753f68cbf29b0e5a25edaac0) Thanks [@radglob](https://github.com/radglob)! - Removes PageLayout.Pane position prop.
+
+### Minor Changes
+
+- [#3714](https://github.com/primer/react/pull/3714) [`88340269`](https://github.com/primer/react/commit/883402697efa8c9ff5c434753d4af36737b65e4b) Thanks [@iansan5653](https://github.com/iansan5653)! - Add support for controlling which side `ActionMenu` renders on (via a `side` prop on `ActionMenu.Overlay`)
+
+  <!-- Changed components: ActionMenu -->
+
+- [#3715](https://github.com/primer/react/pull/3715) [`1f889281`](https://github.com/primer/react/commit/1f88928117acf86a3acd75c405b0064f080a66e3) Thanks [@joshblack](https://github.com/joshblack)! - Add support for leadingVisual and trailingVisual props to Button
+
+  <!-- Changed components: Button -->
+
+- [#3719](https://github.com/primer/react/pull/3719) [`500e529d`](https://github.com/primer/react/commit/500e529df47ae5def4bf5cedc55fc099251c25a1) Thanks [@joshblack](https://github.com/joshblack)! - The UnderlineNav, FilterList, and FilteredSearch components will be deprecated in v36 and have been moved to the deprecated entrypoint. To use the new UnderlineNav, migrate to the component available in drafts.
+
+  <!-- Changed components: FilterList, FilteredSearch, UnderlineNav -->
+
+### Patch Changes
+
+- [#3661](https://github.com/primer/react/pull/3661) [`25693b08`](https://github.com/primer/react/commit/25693b08e8f2c89af1199c2f9d4fe38777f8a70b) Thanks [@joshblack](https://github.com/joshblack)! - Update the `children` prop for `Button` to be optional
+
+  <!-- Changed components: Button, IconButton -->
+
+- [#3456](https://github.com/primer/react/pull/3456) [`6df7ae21`](https://github.com/primer/react/commit/6df7ae218f7320e71ab24b7937f2452259489491) Thanks [@mperrotti](https://github.com/mperrotti)! - Fixes type errors that appeared during v36 development. Likely caused by Button updates
+
+- [#3367](https://github.com/primer/react/pull/3367) [`3a701364`](https://github.com/primer/react/commit/3a701364aa77e24764a468de29602bc90142bbea) Thanks [@radglob](https://github.com/radglob)! - Use createRoot instead of ReactDOM.render for React 18 compatibility.
+
+- [#3557](https://github.com/primer/react/pull/3557) [`b0fc071c`](https://github.com/primer/react/commit/b0fc071c8954c051987800baa51ead4134dd955a) Thanks [@radglob](https://github.com/radglob)! - Use IconButton instead of ButtonClose in v1 Dialog.
+
+  <!-- Changed components: Dialog -->
+
+- [#3722](https://github.com/primer/react/pull/3722) [`0baa5a7f`](https://github.com/primer/react/commit/0baa5a7f6a009e6a7c77cd380f9b9ad93fdfd7cd) Thanks [@mattcosta7](https://github.com/mattcosta7)! - use isomorphic layout effects only
+
+  <!-- Changed components: InlineAutocomplete, MarkdownEditor -->
+
+- [#3354](https://github.com/primer/react/pull/3354) [`d848aa51`](https://github.com/primer/react/commit/d848aa51d538ea8ba4f85e443f6c39a4c826a0b8) Thanks [@joshblack](https://github.com/joshblack)! - FilteredActionList now uses new ActionList as a base, and SelectPanel reflects those changes.
+
 ## 35.29.0
 
 ### Minor Changes
